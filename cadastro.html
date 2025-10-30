@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Sistema de Informação</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="lateral-line left"></div>
+    <div class="lateral-line right"></div>
+
+    <header>
+        <div class="logo">Sistema de Informação</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Início (Detalhes)</a></li>
+                <li><a href="sobre.html">Sobre</a></li> 
+                <li><a href="mercado.html">Mercado de Trabalho</a></li> 
+                <li><a href="conquistar.html">Como Conquistar</a></li>
+                <li><a href="cadastro.html">Cadastro</a></li>
+            </ul>
+        </nav>
+        <div class="social-links">
+            <a href="https://instagram.com" target="_blank" class="social-icon instagram" title="Instagram">I</a>
+            <a href="https://facebook.com" target="_blank" class="social-icon facebook" title="Facebook">f</a>
+            <a href="https://youtube.com" target="_blank" class="social-icon youtube" title="YouTube">▶</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="cadastro-form" class="content-box">
+            <h2 class="title">CRIE SUA CONTA TECNOLÓGICA</h2>
+            <form>
+                <div class="form-group">
+                    <label for="nome">Nome Completo:</label>
+                    <input type="text" id="nome" name="nome" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Criar Senha:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit">Cadastrar Agora</button>
+            </form>
+            
+            <p class="text" style="margin-top: 30px;">Ou entre com suas redes:</p>
+            <div class="social-buttons">
+                <button class="social-button google">
+                    Google
+                </button>
+                <button class="social-button email-login">
+                    Entrar por Email
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Sistema de Informação. Todos os direitos reservados.</p>
+        <p><a href="index.html">Voltar ao Início</a></p>
+    </footer>
+
+    <button id="chatbot-button" class="chatbot-floating-button">
+        <img src="chatbot.png" alt="Chatbot Icon">
+    </button>
+
+    <div id="chatbot-container" class="chatbot-container">
+        <div class="chatbot-header">
+            <h3>🤖 Chatbot SI</h3>
+            <span class="chatbot-close-button">&times;</span>
+        </div>
+        <div class="chatbot-body" id="chatbot-body">
+            </div>
+        <div class="chatbot-input">
+            </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
