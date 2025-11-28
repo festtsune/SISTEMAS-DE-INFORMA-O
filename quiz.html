@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz SI - Sistemas de Informação</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* Oculta todas as questões e mostra apenas a ativa (mantido) */
+        .question-box {
+            display: none; 
+            margin-bottom: 25px;
+            padding: 20px; /* Mais padding para respirar */
+            background-color: rgba(255, 255, 255, 0.05); /* Fundo sutil para destaque */
+            border: 1px solid #00BFFF;
+            border-radius: 12px; /* Bordas arredondadas (sem pontas) */
+            box-shadow: 0 4px 15px rgba(0, 191, 255, 0.2); /* Sombra suave de destaque */
+            transition: all 0.3s ease;
+        }
+        .question-box.active {
+            display: block; 
+            border-color: #8A2BE2; /* Destaque na borda da questão ativa */
+        }
+        
+        /* Estilo da Pergunta */
+        .question-box h3 {
+            font-size: 1.3em !important;
+            color: #fff !important; 
+            border-bottom: 2px solid #00BFFF; /* Linha de separação */
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        /* Estilo das Opções de Resposta */
+        .answers label {
+            display: block;
+            margin: 12px 0;
+            padding: 10px 15px;
+            cursor: pointer;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px; /* Bordas arredondadas nas opções */
+            transition: background-color 0.2s, box-shadow 0.2s;
+            border: 1px solid transparent;
+        }
+        
+        /* Efeito Hover nas Opções */
+        .answers label:hover {
+            background-color: rgba(0, 191, 255, 0.2); /* Azul claro no hover */
+            border-color: #00BFFF;
+        }
+
+        /* Estilo da Opção Selecionada (Checkbox/Radio) */
+        .answers input[type="radio"]:checked + span {
+            font-weight: bold;
+            color: #00BFFF; 
+        }
+
+        /* Oculta o input radio padrão para estilizarmos o label (o texto da opção) */
+        .answers input[type="radio"] {
+            margin-right: 10px;
+            /* Se quiser esconder totalmente o radio/checkbox: display: none; */
+        }
+        
+        /* Destaque nos botões de Ação */
+        .action-button {
+            padding: 12px 25px;
+            font-size: 1.1em;
+            border-radius: 20px; /* Botões mais arredondados */
+            transition: background-color 0.2s, transform 0.2s;
+        }
+        .action-button:hover {
+            transform: translateY(-2px);
+        }
+        
+        /* Feedback (para a mensagem de erro/resultado) */
+        #feedback {
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        
+        /* Estilos de Feedback de Cor para Resultados */
+        .correct-answer-box {
+            background-color: rgba(0, 255, 0, 0.15) !important; /* Verde mais escuro */
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+        }
+        .incorrect-answer-box {
+            background-color: rgba(255, 0, 0, 0.15) !important; /* Vermelho mais escuro */
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+        }
+
+    </style>
+    </head>
+<body>
+
+    <div class="lateral-line left"></div>
+    <div class="lateral-line right"></div>
+
+    <header>
+        <div class="logo">Sistema de Informação</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Início (Detalhes)</a></li>
+                <li><a href="sobre.html">Sobre</a></li> 
+                <li><a href="mercado.html">Mercado de Trabalho</a></li> 
+                <li><a href="conquistar.html">Como Conquistar</a></li>
+                <li><a href="quiz.html">Quiz SI</a></li>
+                <li><a href="cadastro.html">Cadastro</a></li>
+            </ul>
+        </nav>
+        <div class="social-links">
+            <a href="https://instagram.com" target="_blank" class="social-icon instagram" title="Instagram">I</a>
+            <a href="https://facebook.com" target="_blank" class="social-icon facebook" title="Facebook">f</a>
+            <a href="https://youtube.com" target="_blank" class="social-icon youtube" title="YouTube">▶</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="quiz" class="content-box">
+            <h1 class="title">🧠 Teste Seus Conhecimentos em Sistemas de Informação!</h1>
+            
+            <div id="progress" class="text" style="margin-bottom: 20px; font-weight: bold; color: #00BFFF;"></div>
+
+            <div id="quiz-container">
+                </div>
+
+            <div id="feedback" class="text" style="margin-top: 10px; font-size: 1em;"></div>
+            
+            <button id="next-question" class="action-button" style="margin-top: 20px;">Próxima Pergunta</button>
+            <button id="submit-quiz" class="action-button" style="display: none; margin-top: 20px; background-color: #8A2BE2;">Ver Resultado</button>
+            
+            <div id="results" class="text" style="margin-top: 30px; font-size: 1.3em; font-weight: bold;"></div>
+
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Sistema de Informação. Todos os direitos reservados.</p>
+        <p><a href="index.html#referencia">Referências</a> | <a href="#contato">Fale Conosco</a></p>
+    </footer>
+
+    <button id="chatbot-button" class="chatbot-floating-button">
+        <img src="chatbot.png" alt="Chatbot Icon">
+    </button>
+    <div id="chatbot-container" class="chatbot-container">
+        <div class="chatbot-header">
+            <h3>🤖 Chatbot SI</h3>
+            <span class="chatbot-close-button">&times;</span>
+        </div>
+        <div class="chatbot-body" id="chatbot-body">
+        </div>
+        <div class="chatbot-input">
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
